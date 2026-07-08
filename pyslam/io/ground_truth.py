@@ -311,19 +311,19 @@ class GroundTruth(object):
             "start_frame_id": self.start_frame_id,
             "filename": self.filename,
             "associations": self.associations,
-            "data": json.dumps(NumpyB64Json.numpy_to_json(self.data)),
+            "data": NumpyB64Json.numpy_to_json(self.data),
             "timestamps": (
-                json.dumps(NumpyB64Json.numpy_to_json(self.timestamps))
+                NumpyB64Json.numpy_to_json(self.timestamps)
                 if self.timestamps is not None
                 else None
             ),
             "trajectory": (
-                json.dumps(NumpyB64Json.numpy_to_json(self.trajectory))
+                NumpyB64Json.numpy_to_json(self.trajectory)
                 if self.trajectory is not None
                 else None
             ),
             "poses": (
-                json.dumps(NumpyB64Json.numpy_to_json(self.poses))
+                NumpyB64Json.numpy_to_json(self.poses)
                 if self.poses is not None
                 else None
             ),
@@ -338,19 +338,19 @@ class GroundTruth(object):
         start_frame_id = json_str["start_frame_id"]
         filename = json_str["filename"]
         associations = json_str["associations"]
-        data = NumpyB64Json.json_to_numpy(json.loads(json_str["data"]))
+        data = NumpyB64Json.json_to_numpy(json_str["data"])
         timestamps = (
-            NumpyB64Json.json_to_numpy(json.loads(json_str["timestamps"]))
+            NumpyB64Json.json_to_numpy(json_str["timestamps"])
             if json_str["timestamps"] is not None
             else None
         )
         trajectory = (
-            NumpyB64Json.json_to_numpy(json.loads(json_str["trajectory"]))
+            NumpyB64Json.json_to_numpy(json_str["trajectory"])
             if json_str["trajectory"] is not None
             else None
         )
         poses = (
-            NumpyB64Json.json_to_numpy(json.loads(json_str["poses"]))
+            NumpyB64Json.json_to_numpy(json_str["poses"])
             if json_str["poses"] is not None
             else None
         )

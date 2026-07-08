@@ -142,22 +142,14 @@ class PreciseFloatEncoder(json_.JSONEncoder):
     """
     Custom JSON encoder that ensures consistent float formatting with maximum precision.
     This helps avoid floating point differences when saving and reloading maps.
-
-    Note: Works with standard json module. For ujson, use format_floats_for_json()
-    to pre-process the data before serialization.
     """
-
-    def encode(self, obj):
-        # Recursively process the object to format floats consistently
-        formatted_obj = format_floats_for_json(obj)
-        return super().encode(formatted_obj)
 
     def default(self, obj):
         # Handle numpy types
         if isinstance(obj, np.ndarray):
-            return format_floats_for_json(obj.tolist())
+            return obj.tolist()
         elif isinstance(obj, np.floating):
-            return float(repr(float(obj)))
+            return float(obj)
         elif isinstance(obj, np.integer):
             return int(obj)
         return super().default(obj)

@@ -365,11 +365,11 @@ class Slam(object):
         map_file_path = path + "/map.json"
         with open(map_file_path, "w") as f:
             try:
-                # Format floats consistently before JSON serialization
-                # This ensures reproducible float representation and reduces precision issues
-                # Note: ujson doesn't support custom encoders, so we pre-process the data
-                map_out_json_formatted = format_floats_for_json(map_out_json)
-                f.write(json.dumps(map_out_json_formatted))
+                # Stream JSON directly to file without duplicating memory, 
+                # while PreciseFloatEncoder handles float precision and numpy arrays
+                from pyslam.utilities.serialization import PreciseFloatEncoder
+                import json as standard_json
+                standard_json.dump(map_out_json, f, cls=PreciseFloatEncoder)
             except Exception as e:
                 Printer.red(f"SLAM: Failed to save map state to {map_file_path}: {e}")
                 print(f"traceback: {traceback.format_exc()}")
