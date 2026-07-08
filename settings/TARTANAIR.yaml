@@ -57,5 +57,5 @@ DepthMapFactor: 1.0
 # Features extraction 
 #--------------------------------------------------------------------------------------------
 
-FeatureTrackerConfig.nFeatures: 1200
+FeatureTrackerConfig.nFeatures: 2000
 

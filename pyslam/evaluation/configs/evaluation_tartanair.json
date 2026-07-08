@@ -1,0 +1,75 @@
+{
+    "num_threads" : 1, // Number of parallel threads (results may get worse with more threads)
+
+    "dataset_base_path": "/home/gsoc-thomas/Downloads/pyslam/datasets/tartanair/ocean/Easy",
+    "dataset_type": "TARTANAIR_DATASET",
+
+    "number_of_runs_per_dataset": 5,
+
+    "sensor_type": "mono",
+    
+    "datasets": [
+        { "name": "P000", "settings_path": "settings/TARTANAIR.yaml", "is_color": true },
+//        { "name": "P001", "settings_path": "settings/TARTANAIR.yaml", "is_color": true },
+//        { "name": "P002", "settings_path": "settings/TARTANAIR.yaml", "is_color": true },
+//        { "name": "P003", "settings_path": "settings/TARTANAIR.yaml", "is_color": true },
+//        { "name": "P004", "settings_path": "settings/TARTANAIR.yaml", "is_color": true },
+//        { "name": "P005", "settings_path": "settings/TARTANAIR.yaml", "is_color": true },
+//        { "name": "P006", "settings_path": "settings/TARTANAIR.yaml", "is_color": true },
+//        { "name": "P007", "settings_path": "settings/TARTANAIR.yaml", "is_color": true },
+//        { "name": "P008", "settings_path": "settings/TARTANAIR.yaml", "is_color": true },
+//        { "name": "P009", "settings_path": "settings/TARTANAIR.yaml", "is_color": true },
+//        { "name": "P010", "settings_path": "settings/TARTANAIR.yaml", "is_color": true },
+//        { "name": "P011", "settings_path": "settings/TARTANAIR.yaml", "is_color": true },
+//        { "name": "P012", "settings_path": "settings/TARTANAIR.yaml", "is_color": true },
+//        { "name": "P013", "settings_path": "settings/TARTANAIR.yaml", "is_color": true }
+    ],
+    "presets": [
+      {
+        "name": "baseline_1000",
+        "custom_parameters": {
+          "settings": {
+            "FeatureTrackerConfig.nFeatures": 1000,
+          }
+        }
+      },
+      {
+        "name": "baseline_2000",
+        "custom_parameters": {
+          "settings": {
+            "FeatureTrackerConfig.nFeatures": 2000,
+          }
+        }
+      },
+      {
+        "name": "baseline_3000",
+        "custom_parameters": {
+          "settings": {
+            "FeatureTrackerConfig.nFeatures": 3000,
+          }
+        }
+      },
+//      {
+//        "name": "root_sift",
+//        "custom_parameters": {
+//          "settings": {
+//            //"FeatureTrackerConfig.nFeatures": 1200,
+//            "FeatureTrackerConfig.name": "ROOT_SIFT",
+//            "LoopDetectionConfig.name": "DBOW3_INDEPENDENT"
+//          }
+//        }
+//      },
+//      {
+//        "name": "superpoint",
+//        "custom_parameters": {
+//          "settings": {
+//            "FeatureTrackerConfig.name": "SUPERPOINT",
+//            "LoopDetectionConfig.name": "DBOW3_INDEPENDENT"
+//          }
+//        }
+//      }
+    ],
+    "output_path": "tartanair",
+    "saved_trajectory_format_type": "tartanair"
+  }
+  

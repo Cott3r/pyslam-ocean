@@ -236,7 +236,7 @@ def main():
     parser.add_argument(
         "--method",
         type=str,
-        default="DEPTH_ANYTHING_V3",
+        default="FAST3R",
         choices=[
             "DUST3R",
             "MAST3R",

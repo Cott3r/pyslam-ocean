@@ -284,7 +284,7 @@ else:
 show_kps_size = False
 img_matched_inliers = None
 
-if False:
+if True:
     img1_kps = cv2.drawKeypoints(
         img1, kps1, None, color=(0, 255, 0), flags=cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS
     )

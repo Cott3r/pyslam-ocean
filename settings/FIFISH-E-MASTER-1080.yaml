@@ -1,0 +1,45 @@
+#--------------------------------------------------------------------------------------------
+# Camera Parameters for KRK-01
+#--------------------------------------------------------------------------------------------
+
+# Standard PySLAM parameters mapping
+Camera.fx: 293.0
+Camera.fy: 293.0
+Camera.cx: 960.0
+Camera.cy: 540.0
+
+Camera.width: 1920
+Camera.height: 1080
+Camera.fps: 25.0
+
+# Assume zero distortion if not provided
+Camera.k1: 0.0
+Camera.k2: 0.0
+Camera.p1: 0.0
+Camera.p2: 0.0
+Camera.k3: 0.0
+
+
+# Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
+Camera.RGB: 1
+
+# Close/Far threshold. Baseline times.
+ThDepth: 40
+
+#--------------------------------------------------------------------------------------------
+# Features extraction 
+#--------------------------------------------------------------------------------------------
+
+FeatureTrackerConfig.nFeatures: 2000
+
+#--------------------------------------------------------------------------------------------
+# Matching (Data Association)
+#--------------------------------------------------------------------------------------------
+
+#Matching.farPointsThreshold: 20.0    # meters (to exclude far points from matching when we have an outdoor scene)
+
+#--------------------------------------------------------------------------------------------
+# Keyframe generation
+#--------------------------------------------------------------------------------------------
+# KeyFrame.useFovCentersBasedGeneration: 1  # compute 3D fov centers of camera frames by using median depth and use their distances to control keyframe generation
+# KeyFrame.maxFovCentersDistance: 0.1       # max distance between fov centers in order to generate a keyframe

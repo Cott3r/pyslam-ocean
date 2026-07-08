@@ -1,23 +1,24 @@
 DATASET:
   # select your dataset (decomment only one of the following lines) 
-  #type: EUROC_DATASET  
-  #type: KITTI_DATASET
-  #type: TUM_DATASET
-  #type: ICL_NUIM_DATASET
-  #type: REPLICA_DATASET
-  #type: TARTANAIR_DATASET
-  #type: SEVEN_SCENES_DATASET
-  #type: NEURAL_RGBD_DATASET
-  #type: CLIO_DATASET
-  #type: BONN_RGBD_DYNAMIC_DATASET
-  #type: ROVER_DATASET  
-  type: VIDEO_DATASET
-  #type: SCANNET_DATASET
-  #type: ROS1BAG_DATASET
-  #type: ROS2BAG_DATASET
-  #type: MCAP_DATASET
-  #type: FOLDER_DATASET
-  #type: LIVE_DATASET  # Not recommended for current development stage
+#  type: EUROC_DATASET
+#  type: KITTI_DATASET
+#  type: TUM_DATASET
+#  type: ICL_NUIM_DATASET
+#  type: REPLICA_DATASET
+#  type: TARTANAIR_DATASET
+#  type: SEVEN_SCENES_DATASET
+#  type: NEURAL_RGBD_DATASET
+#  type: CLIO_DATASET
+#  type: BONN_RGBD_DYNAMIC_DATASET
+#  type: ROVER_DATASET
+#  type: VIDEO_DATASET
+  type: VIDEO_DATASET_CUSTOM_1
+#  type: SCANNET_DATASET
+#  type: ROS1BAG_DATASET
+#  type: ROS2BAG_DATASET
+#  type: MCAP_DATASET
+#  type: FOLDER_DATASET
+#  type: LIVE_DATASET  # Not recommended for current development stage
 
 
 KITTI_DATASET:
@@ -122,8 +123,8 @@ SCANNET_DATASET:
 TARTANAIR_DATASET:
   type: tartanair
   sensor_type: stereo # Here, 'sensor_type' can be 'mono', 'stereo' or 'rgbd'
-  base_path: /home/luigi/Work/datasets/rgbd_datasets/tartanair/abandonedfactory_sample_P001
-  name: 'P001'
+  base_path: /home/gsoc-thomas/Documents/Data/datasets/tartanair/ocean/Easy
+  name: 'P004'
   settings: settings/TARTANAIR.yaml 
   groundtruth_file: auto
   environment_type: outdoor
@@ -206,6 +207,16 @@ VIDEO_DATASET:
   #
   groundtruth_file: groundtruth.txt
   timestamps: times.txt # to be intended as the frame timestamps
+
+
+VIDEO_DATASET_CUSTOM_1:
+  type: video
+  sensor_type: mono   # Here, 'sensor_type' can be only 'mono'
+  base_path: /home/gsoc-thomas/Documents/Data/datasets/gsoc/Data/Video/Krk 2026-5/samples/downscaled_480p
+  settings: settings/FIFISH-E-MASTER-480.yaml
+  name: 20260509_151300_180_N001_480p.mp4
+#  groundtruth_file: none
+#  timestamps: times.txt # to be intended as the frame timestamps
 
 
 FOLDER_DATASET:

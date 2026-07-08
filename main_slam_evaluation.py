@@ -60,7 +60,7 @@ date_time_now_string = date_time_now.strftime("%Y_%m_%d-%H_%M_%S")
 eval_path_prefix = kResultsFolder + "/eval_" + date_time_now_string
 
 config_dir_path = os.path.abspath(os.path.join(kEvaluationFolder, "configs"))
-default_config_file_path = os.path.join(config_dir_path, "evaluation_tum.json")
+default_config_file_path = os.path.join(config_dir_path, "evaluation_tartanair.json")
 default_template_config_file_path = os.path.abspath(
     os.path.join(config_dir_path, "config.template.yaml")
 )
@@ -97,7 +97,7 @@ if __name__ == "__main__":
         "-o",
         "--output-path",
         type=str,
-        default="/home/luigi/Work/slam_wss/pyslam-master-new/results/eval_2025_04_13-21_16_14/tum",
+        default="/home/gsoc-thomas/Documents/Data/results",
         help="Path of the output folder",
     )
     args = argparser.parse_args()

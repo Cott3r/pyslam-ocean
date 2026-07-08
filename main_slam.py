@@ -439,7 +439,8 @@ if __name__ == "__main__":
             if is_map_save:
                 slam.save_system_state(config.system_state_folder_path)
                 dataset.save_info(config.system_state_folder_path)
-                groundtruth.save(config.system_state_folder_path)
+                if has_groundtruth:
+                    groundtruth.save(config.system_state_folder_path)
                 Printer.blue("\nuncheck pause checkbox on GUI to continue...\n")
 
             if is_bundle_adjust:
