@@ -1078,7 +1078,7 @@ class TartanairDataset(Dataset):
         if sensor_type == SensorType.MONOCULAR:
             self.scale_viewer_3d = 0.05
         print("Processing Replica Sequence")
-        self.base_path = self.path + "/" + self.name + "/"
+        self.base_path = self.path + "/" + self.name
         # count the number of frames in the path
         self.gt_left_file_path = self.base_path + "/pose_left.txt"
         self.max_frame_id = sum(1 for line in open(self.gt_left_file_path))

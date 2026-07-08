@@ -40,11 +40,13 @@ class TrajectoryWriter:
     KITTI_FORMAT = "kitti"
     TUM_FORMAT = "tum"
     EUROC_FORMAT = "euroc"
+    TARTANAIR_FORMAT = "tartanair"
 
     FORMAT_FUNCTIONS = {
         KITTI_FORMAT: "_write_kitti_trajectory",
         TUM_FORMAT: "_write_tum_trajectory",
         EUROC_FORMAT: "_write_euroc_trajectory",
+        TARTANAIR_FORMAT: "_write_tartanair_trajectory",
     }
 
     def __init__(self, format_type: str, filename: str = None) -> None:
@@ -144,6 +146,12 @@ class TrajectoryWriter:
         # q_str = ', '.join(fmt(x) for x in [q.x, q.y, q.z, q.w])
         q_str = ", ".join(fmt(x) for x in [q[0], q[1], q[2], q[3]])
         self.file.write(f"{timestamp_fmt(timestamp)}, {t_str}, {q_str}\n")
+
+    def _write_tartanair_trajectory(self, R, t, timestamp) -> None:
+        fmt = self._get_format_func(t)
+        q = R_scipy.from_matrix(R).as_quat()  # [x, y, z, w]
+        elements = [t[0], t[1], t[2], q[0], q[1], q[2], q[3]]
+        self.file.write(" ".join(fmt(x) for x in elements) + "\n")
 
     @staticmethod
     def generate_filename():
