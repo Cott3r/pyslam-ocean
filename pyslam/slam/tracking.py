@@ -1079,7 +1079,7 @@ class Tracking:
             self.pose_timestamps.append(f_cur.timestamp)
 
     # @ main track method @
-    def track(self, img, img_right, depth, img_id, timestamp=None, mask=None, mask_right=None):
+    def track(self, img, img_right, depth, img_id, timestamp=None, mask=None, mask_right=None, prior_pose=None):
         """
         Track a frame.
         The mask is used to mask the image for feature tracking.
@@ -1091,6 +1091,7 @@ class Tracking:
             timestamp: The timestamp of the image.
             mask: The mask of the image.
             mask_right: The mask of the right image.
+            prior_pose: A prior 4x4 pose SE(3) matrix to help tracking and relocalization.
         Returns:
             None
         """
@@ -1287,7 +1288,10 @@ class Tracking:
                 self.f_ref.check_replaced_map_points()
 
                 # set intial guess for current pose optimization
-                if kUseMotionModel and self.motion_model.is_ok:
+                if prior_pose is not None:
+                    print("using prior pose for tracking initial guess")
+                    f_cur.update_pose(prior_pose.copy())
+                elif kUseMotionModel and self.motion_model.is_ok:
                     print("using motion model for next pose prediction")
                     # update f_ref pose according to its reference keyframe (the pose of the reference keyframe could have been updated by local mapping)
                     self.f_ref.update_pose(
@@ -1327,7 +1331,29 @@ class Tracking:
                 # SLAM is NOT OK
                 if self.state != SlamState.INIT_RELOCALIZE:
                     self.state = SlamState.RELOCALIZE
-                if self.relocalize(f_cur, img):
+                    
+                relocalized_with_prior = False
+                if prior_pose is not None:
+                    # Find closest keyframe to use as reference
+                    keyframes = list(self.map.get_keyframes())
+                    if len(keyframes) > 0:
+                        prior_pos = prior_pose[:3, 3]
+                        dists = [np.linalg.norm(kf.position() - prior_pos) for kf in keyframes]
+                        closest_kf_idx = np.argmin(dists)
+                        self.kf_ref = keyframes[closest_kf_idx]
+                        f_cur.kf_ref = self.kf_ref
+
+                        f_cur.update_pose(prior_pose)
+                        self.track_keyframe(self.kf_ref, f_cur)
+
+                        if self.pose_is_ok:
+                            relocalized_with_prior = True
+                            Printer.green(f"Relocalization successful using prior pose, img id: {img_id}")
+
+                if not relocalized_with_prior and self.relocalize(f_cur, img):
+                    relocalized_with_prior = True
+                
+                if relocalized_with_prior:
                     # Always set last_reloc_frame_id after successful relocalization
                     self.last_reloc_frame_id = f_cur.id
                     if self.state != SlamState.INIT_RELOCALIZE:

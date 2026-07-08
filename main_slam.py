@@ -368,7 +368,15 @@ if __name__ == "__main__":
                                 # cv2.imshow("depth prediction", depth_img)
                                 cv_image_viewer.draw(depth_img, "depth prediction")
 
-                        slam.track(img, img_right, depth, img_id, timestamp)  # main SLAM function
+
+                        # --- INJECT PRIOR POSE HERE ---
+                        # Example: Extract ground truth or GPS prior pose for this timestamp
+                        prior_pose = None
+                        # Uncomment to use groundtruth as prior pose:
+                        # if has_groundtruth and gt_poses is not None and timestamp is not None:
+                        #    prior_pose = groundtruth.getClosestPose(timestamp)
+
+                        slam.track(img, img_right, depth, img_id, timestamp, prior_pose=prior_pose)  # main SLAM function
 
                         # 3D display (map display)
                         if viewer3D:
