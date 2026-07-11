@@ -122,7 +122,7 @@ SCANNET_DATASET:
 
 TARTANAIR_DATASET:
   type: tartanair
-  sensor_type: stereo # Here, 'sensor_type' can be 'mono', 'stereo' or 'rgbd'
+  sensor_type: rgbd # Here, 'sensor_type' can be 'mono', 'stereo' or 'rgbd'
   base_path: /home/gsoc-thomas/Documents/Data/datasets/tartanair/ocean/Easy
   name: 'P004'
   settings: settings/TARTANAIR.yaml 

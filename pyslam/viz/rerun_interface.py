@@ -315,6 +315,29 @@ class Rerun:
         )
 
     @staticmethod
+    def log_3d_lines(
+        topic: str,
+        lines: np.ndarray,
+        color=[0, 255, 0],
+        size=0.02,
+    ) -> None:
+        """
+        Log a collection of independent 3D line segments.
+        lines should be shaped [N, 2, 3] or [N, 6]
+        """
+        if lines is None or len(lines) == 0:
+            return
+        lines = np.array(lines).reshape(-1, 2, 3)
+        rr.log(
+            topic,
+            rr.LineStrips3D(
+                lines,
+                radii=size,
+                colors=color,
+            ),
+        )
+
+    @staticmethod
     def log_3d_camera_pose(frame_id: int, camera: Camera, pose, color=[0, 255, 0], size=1.0):
         """
         Log a 3D camera pose.
