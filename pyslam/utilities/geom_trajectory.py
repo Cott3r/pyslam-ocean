@@ -656,6 +656,9 @@ class TrajectoryAlignerProcessBatch(mp.Process):
                 find_scale=self.find_scale,
             )
 
+            if T_gt_est is None or alignment_gt_data is None or alignment_gt_data.T_est_gt is None:
+                raise ValueError("Not enough points to align yet")
+
             T_est_gt = alignment_gt_data.T_est_gt
             # compute all gt data aligned to the estimated trajectory
             alignment_gt_data.gt_trajectory_aligned = (

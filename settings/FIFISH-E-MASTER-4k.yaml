@@ -43,3 +43,9 @@ FeatureTrackerConfig.nFeatures: 2000
 #--------------------------------------------------------------------------------------------
 # KeyFrame.useFovCentersBasedGeneration: 1  # compute 3D fov centers of camera frames by using median depth and use their distances to control keyframe generation
 # KeyFrame.maxFovCentersDistance: 0.1       # max distance between fov centers in order to generate a keyframe
+
+#--------------------------------------------------------------------------------------------
+# SLAM Configuration Overrides
+#--------------------------------------------------------------------------------------------
+FeatureTrackerConfig.name: LIGHTGLUE
+LoopDetectionConfig.name: DBOW3_INDEPENDENT

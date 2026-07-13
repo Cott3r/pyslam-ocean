@@ -59,3 +59,9 @@ DepthMapFactor: 1.0
 
 FeatureTrackerConfig.nFeatures: 2000
 
+
+#--------------------------------------------------------------------------------------------
+# SLAM Configuration Overrides
+#--------------------------------------------------------------------------------------------
+FeatureTrackerConfig.name: LIGHTGLUE
+LoopDetectionConfig.name: DBOW3_INDEPENDENT

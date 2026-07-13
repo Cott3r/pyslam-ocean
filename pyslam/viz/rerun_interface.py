@@ -210,9 +210,9 @@ class Rerun:
         if depth is not None:
             rr.log("/world/camera/depth", rr.DepthImage(depth, meter=1.0, colormap="viridis"))
 
-        Rerun.log_3d_camera_pose(
-            frame_id, camera, camera_pose, color=[0, 255, 0], size=Rerun.camera_poses_view_size
-        )
+        # Rerun.log_3d_camera_pose(
+        #     frame_id, camera, camera_pose, color=[0, 255, 0], size=Rerun.camera_poses_view_size
+        # )
 
     @staticmethod
     def log_3d_grid_plane(num_divs=30, div_size=10):
